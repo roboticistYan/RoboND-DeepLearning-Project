@@ -15,12 +15,9 @@ In this project, I implemented SegNet. The goal is to identify target, pedestria
 
 #### 4. The student has a clear understanding and is able to identify the use of various techniques and concepts in network layers indicated by the write-up.
 
-- 1 by 1 convolution: this layer is using kernel shape (1x1xNk), where Nk is the number of kernels. This layer is useful for transforming the input layer to desired depth while keeping original depth and height. The addtional number of parameters is Dx1x1xNk.
+- 1 by 1 convolution: this layer is using kernel shape (1x1xNk), where Nk is the number of kernels. It can be viewed as a mini neural network running over the patch. It is an cheap and efficient way to add reasonable number of parameters in to the neural network.
 
-- fully connected layer: uses three techniques to help us solve semantic segmantation problems.
-    1. Replace fully connected layer with one by one convolutional layer. This reduced computational complexity and provides a starting point building more advanced architecture of decoders rather t	han single fully-connected layer.
-    2. Upsample through the transposed convolutional layers. This technique help restore orignal image size so that we can do pixel-wise classification.
-    3. Skip connection to allow former layers leak into decoder blocks, which help preserve spatial information.
+- fully connected layer: this layer connects every node in one layer to every node in the other layer. Fully connected layer is useful for mapping from learned features (output of CNN) to output value. Since it is an expensive operation, we usually use that at the very end of neural network.
 
 #### 5. The student has a clear understanding of image manipulation in the context of the project indicated by the write-up.
 The encoder blocks transform the original images into featrue maps. For example, in human face recognition, a feature map can be a mask of eyes or a mask of noses. Deep learning exploits modern computational power to explore nonintuitive features as opposed to man-crafted image filters.
