@@ -46,3 +46,4 @@ My model achieves accuracy of 42.87%.
 |--|--|--|
 |[1]|SegNet|http://mi.eng.cam.ac.uk/projects/segnet/
 |[2]|Separable Convolution Layer| https://medium.com/towards-data-science/types-of-convolutions-in-deep-learning-717013397f4d|
+|[3]|Understanding Fully Connected Layer|https://stats.stackexchange.com/questions/194142/what-does-1x1-convolution-mean-in-a-neural-network|
