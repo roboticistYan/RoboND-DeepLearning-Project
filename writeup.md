@@ -7,6 +7,8 @@ You are reading it!
 #### 2. The write-up conveys the an understanding of the network architecture.
 In this project, I implemented SegNet. The goal is to identify target, pedestrians and others in pixelwise manner. This is achieved by building an series of encoder blocks. An encoder block is composed separable convolution layer. The advantage of separable convolution layers is less parameters to train. The final layer of encoder is a fully-convolution layer. As for decoder block, each decoder will first upsample the input image and concatenate with a previous encoder block. Concatenation with encoder blocks help preserve spatial information.
 
+![model_scheme](data/figures/model_with_shape.png)
+
 #### 3. The write-up conveys the student's understanding of the parameters chosen for the the neural network.
 
 - Batch size: the given training dataset has 4,132 instances. Hence I pick batch size of 20 so that each batch can be trained with 20 images.
@@ -22,7 +24,7 @@ In this project, I implemented SegNet. The goal is to identify target, pedestria
 #### 5. The student has a clear understanding of image manipulation in the context of the project indicated by the write-up.
 The encoder blocks transform the original images into featrue maps. For example, in human face recognition, a feature map can be a mask of eyes or a mask of noses. Deep learning exploits modern computational power to explore nonintuitive features as opposed to man-crafted image filters.
 
-The decoder blocks decipher the features maps and relate features to each pixel and original images.
+The decoder block first upsample the input layer, and concatenate the upsampled layer with a passthorgh layer. This helps preserve spatial information. Since I have 5 layers with stride 2, I can only upsample by 5 times too. Finally when the decoder is as large as the original image, the softmax activation maps the output of the decoder to class number. So the loss function can be computed and backprop can be done.
 
 One should not use too many skip connections, because it can lead to explosion of the size of the model.
 
@@ -30,6 +32,8 @@ One should not use too many skip connections, because it can lead to explosion o
 If we were to follow another object instead of a human, we need to replace the trainig mask images. So the interested object can be encoded in the blue channel, while the original human pixels are moved to the green channel.
 
 If we want to classify more than three classes, RGB is not enough anymore. We may need **N** colors that is correspondent to **N** classes. And the mask images should be hot coded with **N** channels.
+
+This model may not be able to detect other classes, because it was only trained by three classes (road, pedestrians and target).
 
 #### 7. The model is submitted in the correct format.
 My model is stored in `data/weights`.
