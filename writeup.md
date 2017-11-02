@@ -17,9 +17,9 @@ In this project, I implemented SegNet. The goal is to identify target, pedestria
 
 #### 4. The student has a clear understanding and is able to identify the use of various techniques and concepts in network layers indicated by the write-up.
 
-- 1 by 1 convolution: this layer is using kernel shape (1x1xNk), where Nk is the number of kernels. It can be viewed as a mini neural network running over the patch. It is an cheap and efficient way to add reasonable number of parameters in to the neural network.
+- 1 by 1 convolution: this layer is using kernel shape (1x1xNk), where Nk is the number of kernels. It can be viewed as a mini neural network running over the patch. It is an cheap and efficient way to adjust the depth of layers. A common use of 1x1 convs is the reduce the number of filters.
 
-- fully connected layer: this layer connects every node in one layer to every node in the other layer. Fully connected layer is useful for mapping from learned features (output of CNN) to output value. Since it is an expensive operation, we usually use that at the very end of neural network.
+- Fully connected layer: this layer connects every node in one layer to every node in the other layer. Fully connected layer is useful for mapping from learned features (output of CNN) to output value. Since it is an expensive operation, we usually use that at the very end of neural network.
 
 #### 5. The student has a clear understanding of image manipulation in the context of the project indicated by the write-up.
 The encoder blocks transform the original images into featrue maps. For example, in human face recognition, a feature map can be a mask of eyes or a mask of noses. Deep learning exploits modern computational power to explore nonintuitive features as opposed to man-crafted image filters.
