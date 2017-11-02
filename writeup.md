@@ -15,6 +15,10 @@ In this project, I implemented SegNet. The goal is to identify target, pedestria
 - Number of batches per epoch: I chose this parameter to be 200 so that each epoch trains 20 x 200 = 4,000 images (*batch size x batches per epoch*). So each epoch roughly walk through the whole training dataset.
 - Epochs and learning rate: as the model is closer to local minima, the slope is smaller and probably needs smaller learning rate. In first 40 epochs I used learning rate of 0.001; and in the last 25 I used learning rate of 0.0005. The last 5 epochs are executed one by one to get the best performance.
 
+The model takes several epoches to converge. If I reduce number of epochs, the tarining and validation loss can be high, since the model is undertrained. 
+
+Picking too large learning rate might engender overshooting. The gradient near local minima tend to be smaller. Therefore, if the step is too large, it will bypass the minimum point and the model will fail to converge.
+
 #### 4. The student has a clear understanding and is able to identify the use of various techniques and concepts in network layers indicated by the write-up.
 
 - 1 by 1 convolution: this layer is using kernel shape (1x1xNk), where Nk is the number of kernels. It can be viewed as a mini neural network running over the patch. It is an cheap and efficient way to adjust the depth of layers. A common use of 1x1 convs is the reduce the number of filters.
@@ -24,7 +28,7 @@ In this project, I implemented SegNet. The goal is to identify target, pedestria
 #### 5. The student has a clear understanding of image manipulation in the context of the project indicated by the write-up.
 The encoder blocks transform the original images into featrue maps. For example, in human face recognition, a feature map can be a mask of eyes or a mask of noses. Deep learning exploits modern computational power to explore nonintuitive features as opposed to man-crafted image filters.
 
-The decoder block first upsample the input layer, and concatenate the upsampled layer with a passthorgh layer. This helps preserve spatial information. Since I have 5 layers with stride 2, I can only upsample by 5 times too. Finally when the decoder is as large as the original image, the softmax activation maps the output of the decoder to class number. So the loss function can be computed and backprop can be done.
+The decoder block first upsample the input layer, and concatenate the upsampled layer with a passthorgh layer. This helps preserve spatial information. Since I have 5 layers with stride 2, I can only upsample by 5 times too. The decoders perfrom transposed convolution to relate the learned features to each patch of the output layer. Finally when the decoder is as large as the original image, the softmax activation maps the output of the decoder to class number. So the loss function can be computed and backprop can be done.
 
 One should not use too many skip connections, because it can lead to explosion of the size of the model.
 
@@ -40,6 +44,11 @@ My model is stored in `data/weights`.
 
 #### 8. The neural network must achieve a minimum level of accuracy for the network implemented.
 My model achieves accuracy of 42.87%.
+
+## Future Enhancements
+1. Use transposed convolutional layer instead of bilinear upsampling.
+2. Add pooling layers.
+3. Try differnet activation functions.
 
 ## References
 |Ref. No.|Purpose|URL|
