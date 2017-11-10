@@ -23,7 +23,7 @@ Picking too large learning rate might engender overshooting. The gradient near l
 
 - 1 by 1 convolution: this layer is using kernel shape (1x1xNk), where Nk is the number of kernels. It can be viewed as a mini neural network running over the patch. It is an cheap and efficient way to adjust the depth of layers. A common use of 1x1 convs is the reduce the number of filters.
 
-- Fully connected layer: this layer connects every node in one layer to every node in the other layer. Fully connected layer is useful for mapping from learned features (output of CNN) to output value. Since it is an expensive operation, we usually use that at the very end of neural network.
+- Fully connected layer: this layer connects every node in one layer to every node in the other layer. Fully connected layer is useful for mapping from learned features (output of CNN) to output value. Since it is an expensive operation, we usually use that at the very end of neural network. Fully connected layers are not spatially located anymore, so there can be no convolutional layers after a fully connected layer.
 
 #### 5. The student has a clear understanding of image manipulation in the context of the project indicated by the write-up.
 The encoder blocks transform the original images into featrue maps. For example, in human face recognition, a feature map can be a mask of eyes or a mask of noses. Deep learning exploits modern computational power to explore nonintuitive features as opposed to man-crafted image filters.
@@ -56,3 +56,4 @@ My model achieves accuracy of 42.87%.
 |[1]|SegNet|http://mi.eng.cam.ac.uk/projects/segnet/
 |[2]|Separable Convolution Layer| https://medium.com/towards-data-science/types-of-convolutions-in-deep-learning-717013397f4d|
 |[3]|Understanding Fully Connected Layer|https://stats.stackexchange.com/questions/194142/what-does-1x1-convolution-mean-in-a-neural-network|
+|[4]|Limitation of fully connected layers|https://www.quora.com/Is-this-true-Fully-connected-layers-are-not-spatially-located-anymore-you-can-visualize-them-as-one-dimensional-so-there-can-be-no-convolutional-layers-after-a-fully-connected-layer-Why|
